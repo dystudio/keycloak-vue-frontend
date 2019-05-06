@@ -103,30 +103,18 @@ export default {
       msg: "Welcome to Your Vue.js App"
     };
   },
-  mounted() {
-    let keycloak = null;
-    keycloak = Keycloak({
-      url: "/auth",
-      realm: "wdh",
-      clientId: "web_app"
-    });
-
-    keycloak
-      .init({ onLoad: "login-required" })
-      .success(function(authenticated) {
-        //alert(authenticated ? 'authenticated' : 'not authenticated');
-        if (!authenticated) {
-          alert("not authenticated");
-        } else {
-          keycloak.loadUserProfile().success(data => {
-            console.info("data is", data);
-          });
-        }
-        console.info(keycloak);
-      })
-      .error(function() {
-        alert("failed to initialize");
-      });
+  created() {
+    this.$axios({
+      method: "get",
+      url: "/api/helloworld",
+      headers: {
+        "Authorization": "BEARER " + localStorage.getItem("sso-token")
+      },
+    }).then(function(res) {
+      console.log(res.data,"success!");
+    }.bind(this)).catch(function(res) {
+      alert('登录异常，请重新登录!');
+    }.bind(this));
   }
 };
 </script>
