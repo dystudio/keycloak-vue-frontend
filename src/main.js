@@ -17,6 +17,7 @@ const router = new VueRouter({
 Vue.prototype.$axios = axios
 
 let _keycloak = null;
+//let _authz = null;
 _keycloak = Keycloak({
   url: "http://124.93.26.52:63156/auth",
   realm: "poc",
@@ -46,7 +47,18 @@ _keycloak
   .error(function () {
     alert("failed to initialize");
   });
-  Vue.prototype.keycloak = _keycloak;
+  Vue.prototype.$keycloak = _keycloak
+  // Vue.use(KeycloakAuthorization);
+  // _authz = new KeycloakAuthorization(_keycloak);
+  // _authz.entitlement("hello-world").then(function(rpt) {
+  //   console.log(rpt);
+  // });
+    // _authz = new KeycloakAuthorization(_keycloak);
+
+    // _authz.init();
+    // _authz.entitlement("hello-world").then(function (rpt) {
+    //   console.log(rpt);
+    // });
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

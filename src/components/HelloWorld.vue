@@ -1,6 +1,8 @@
 <template>
 
   <div class="hello">
+    <button @click="getToken">确认</button>
+
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <ul>
@@ -106,23 +108,33 @@ export default {
       msg: "Welcome to Your Vue.js App"
     };
   },
+  methods:{
+    getToken: function() {
+        this.auth.entitlement("hello-world").then(function (rpt) {
+        console.log("rpt output");
+        console.log(rpt);
+     });
+    }
+  },
   created() {
     this.$axios({
       method: "get",
-      url: "/api/helloworld",
+      url: "https://spring-boot-demo-helloworld.apps.dhccloud.com.cn/hello",
       headers: {
         "Authorization": "BEARER " + localStorage.getItem("sso-token")
       },
     }).then(function(res) {
       console.log(res.data,"success!");
-      var auth = new KeycloakAuthorization($keycloak)
-      auth.entitlement("hello-world").then(function (rpt) {
-        console.log("entitlements begins");
-        console.log(rpt);
-        console.log("entitlements ends");
-      });
+      console.log(this.$keycloak);
+      this.auth = new KeycloakAuthorization(this.$keycloak);
+      console.log(this.auth);
+    //   this.auth.entitlement("hello-world").then(function (rpt) {
+    //     console.log("rpt output");
+    //     console.log(rpt);
+    //  });
     }.bind(this)).catch(function(res) {
-      alert('登录异常，请重新登录!');
+      console.log(res);
+      //alert('登录异常，请重新登录!');
     }.bind(this));
   }
 };
