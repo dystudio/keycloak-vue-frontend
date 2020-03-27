@@ -15,7 +15,7 @@
  *  limitations under the License.
  *
  */
- /* eslint-disable */
+/* eslint-disable */
 (function( window, undefined ) {
 
     var KeycloakAuthorization = function (keycloak, options) {
