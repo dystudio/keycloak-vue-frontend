@@ -6,7 +6,7 @@ import routers from './router'
 import VueRouter from 'vue-router'
 import axios from 'axios'
 
- /* eslint-disable */
+/* eslint-disable */
 Vue.use(VueRouter);
 // Vue.config.productionTip = false
 const router = new VueRouter({
