@@ -94,7 +94,7 @@
 </template>
 
 <script>
- /* eslint-disable */
+/* eslint-disable */
 import "./keycloak";
 import "./keycloak-authz";
 import "../main";
