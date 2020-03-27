@@ -94,7 +94,10 @@
 </template>
 
 <script>
+ /* eslint-disable */
 import "./keycloak";
+import "./keycloak-authz";
+import "../main";
 
 export default {
   name: "HelloWorld",
@@ -112,6 +115,12 @@ export default {
       },
     }).then(function(res) {
       console.log(res.data,"success!");
+      var auth = new KeycloakAuthorization($keycloak)
+      auth.entitlement("hello-world").then(function (rpt) {
+        console.log("entitlements begins");
+        console.log(rpt);
+        console.log("entitlements ends");
+      });
     }.bind(this)).catch(function(res) {
       alert('登录异常，请重新登录!');
     }.bind(this));

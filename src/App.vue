@@ -1,3 +1,4 @@
+
 <template>
   <div id="app">
     <img src="./assets/logo.png">
@@ -6,6 +7,7 @@
 </template>
 
 <script>
+ /* eslint-disable */
 export default {
   name: "App",
   data() {

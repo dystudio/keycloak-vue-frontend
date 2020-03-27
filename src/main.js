@@ -6,6 +6,7 @@ import routers from './router'
 import VueRouter from 'vue-router'
 import axios from 'axios'
 
+ /* eslint-disable */
 Vue.use(VueRouter);
 // Vue.config.productionTip = false
 const router = new VueRouter({
@@ -17,9 +18,12 @@ Vue.prototype.$axios = axios
 
 let _keycloak = null;
 _keycloak = Keycloak({
-  url: "/auth",
-  realm: "wdh",
-  clientId: "web_app"
+  url: "http://124.93.26.52:63156/auth",
+  realm: "poc",
+  clientId: "hello-world",
+  credentials: {
+          secret: "ed8acd27-c347-4af8-9f48-5ea31da049fe"
+  }
 });
 
 _keycloak
@@ -42,6 +46,7 @@ _keycloak
   .error(function () {
     alert("failed to initialize");
   });
+  Vue.prototype.keycloak = _keycloak;
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

@@ -84,6 +84,7 @@
 </template>
 
 <script>
+ /* eslint-disable */
 import "./keycloak";
 
 export default {
